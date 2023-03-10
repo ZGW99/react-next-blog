@@ -11,12 +11,12 @@ yarn dev
 # or
 pnpm dev
 ```
-
+调试和静态
 ```
-###调试npm run dev
-###静态npm run start
+npm run dev
+npm run start
 ```
-###打开浏览器本地网址
+打开浏览器本地网址
 ```
 http://localhost:3000/blogList
 ```
