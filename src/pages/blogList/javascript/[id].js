@@ -1,8 +1,9 @@
 
 import Head from 'next/head';
-import { getPostById, getAllIds } from '../../utils/formatterMd';
-import styles from '../../styles/Markdown.module.css';
-import Wrapper from '../../components/Wrapper';
+import { getPostById, getAllIds } from '../../../utils/formatterMd';
+import styles from '../../../styles/Markdown.module.css';
+import Wrapper from '../../../components/Wrapper';
+import { useRouter } from 'next/router'
 
 const BlogListItem = ({ data }) => {
 
@@ -21,8 +22,8 @@ const BlogListItem = ({ data }) => {
 };
 export default BlogListItem;
 
-export const getStaticPaths = async () => {
-    const paths = await getAllIds();
+export const getStaticPaths = async (data) => {
+    const paths = await getAllIds('javascript');
 
     return {
         paths,
@@ -31,7 +32,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }) => {
-    const data = await getPostById(params.id);
+    const data = await getPostById(params.id, 'javascript');
     return {
         props: {
             data,

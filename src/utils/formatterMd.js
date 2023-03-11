@@ -12,8 +12,8 @@ import rehypeFormat from 'rehype-format';
 import rehypeStringify from 'rehype-stringify';
 import remarkGfm from 'remark-gfm';
 
-export const getSortedPostData = async () => {
-    const postPath = path.join(process.cwd(), 'public', 'posts');
+export const getSortedPostData = async (paths) => {
+    const postPath = path.join(process.cwd(), 'public', paths);
     const postNames = await fsPromises.readdir(postPath);
 
     const allPostsData = postNames
@@ -28,6 +28,7 @@ export const getSortedPostData = async () => {
             const matterData = matter(mdContent);
             return {
                 id,
+                path: paths,
                 ...matterData.data,
                 date: format(matterData.data.date, 'LLLL d, yyyy'),
             };
@@ -40,8 +41,8 @@ export const getSortedPostData = async () => {
     });
 };
 
-export const getAllIds = async () => {
-    const postPath = path.join(process.cwd(), 'public', 'posts');
+export const getAllIds = async (tagsPath) => {
+    const postPath = path.join(process.cwd(), 'public', tagsPath);
     const postNames = await fsPromises.readdir(postPath);
     return postNames
         .filter((name) => name !== '.DS_Store')
@@ -52,8 +53,8 @@ export const getAllIds = async () => {
         }));
 };
 
-export const getPostById = async (id) => {
-    const postPath = path.join(process.cwd(), 'public', 'posts', `${id}.md`);
+export const getPostById = async (id, paths) => {
+    const postPath = path.join(process.cwd(), 'public', paths, `${id}.md`);
     const mdContent = await fsPromises.readFile(path.join(postPath), {
         encoding: 'utf-8',
     });

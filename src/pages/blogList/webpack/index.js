@@ -1,8 +1,8 @@
+import BlogList from '@/components/Blogs/BlogList';
 import Head from 'next/head';
-import { getSortedPostData } from '../utils/formatterMd';
-import BlogList from '../components/Blogs/BlogList'
+import { getSortedPostData } from '../../../utils/formatterMd';
 
-const Blog = ({ articleList }) => {
+const ReactBlogs = ({ articleList }) => {
   return (
     <>
       <Head>
@@ -13,10 +13,10 @@ const Blog = ({ articleList }) => {
   );
 };
 
-export default Blog;
+export default ReactBlogs;
 
 export const getStaticProps = async () => {
-  const articleList = await getSortedPostData('html');
+  const articleList = await getSortedPostData('webpack');
   return {
     props: {
       articleList,
