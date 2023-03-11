@@ -3,16 +3,16 @@ import NavBar from './NavBar';
 import React from 'react';
 
 const Layout = ({ children }) => {
-  //   const [mode, setMode] = React.useState('light');
+    const [mode, setMode] = React.useState('light');
 
-  //   React.useEffect(() => {
-  //     if (localStorage.getItem('mode')) {
-  //       setMode(localStorage.getItem('mode'));
-  //     }
-  //   }, []);
+    React.useEffect(() => {
+      if (localStorage.getItem('mode')) {
+        setMode(localStorage.getItem('mode'));
+      }
+    }, []);
 
   return (
-    <div className='layout'>
+    <div className='layout' color-mode={mode}>
       <Head>
         <link rel='shortcut icon' href='/favicon.svg' type='image/x-icon' />
         <link rel='preconnect' href='https://fonts.googleapis.com' />
@@ -28,7 +28,7 @@ const Layout = ({ children }) => {
         />
       </Head>
       <main>
-        <NavBar />
+        <NavBar setMode={setMode} mode={mode} />
         {children}
       </main>
     </div>

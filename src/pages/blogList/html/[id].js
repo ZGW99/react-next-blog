@@ -1,8 +1,8 @@
 
 import Head from 'next/head';
-import { getPostById, getAllIds } from '../../utils/formatterMd';
-import styles from '../../styles/Markdown.module.css';
-import Wrapper from '../../components/Wrapper';
+import { getPostById, getAllIds } from '../../../utils/formatterMd';
+import styles from '../../../styles/Markdown.module.css';
+import Wrapper from '../../../components/Wrapper';
 
 const BlogListItem = ({ data }) => {
 
@@ -22,8 +22,8 @@ const BlogListItem = ({ data }) => {
 export default BlogListItem;
 
 export const getStaticPaths = async () => {
-    const paths = await getAllIds();
-
+    const paths = await getAllIds('html');
+    
     return {
         paths,
         fallback: false,
@@ -31,7 +31,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }) => {
-    const data = await getPostById(params.id);
+    const data = await getPostById(params.id, 'html');
     return {
         props: {
             data,
